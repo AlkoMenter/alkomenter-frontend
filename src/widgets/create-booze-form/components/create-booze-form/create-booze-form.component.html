@@ -24,13 +24,13 @@
 
   <mat-form-field>
     <mat-label>Дата завершения</mat-label>
-    <input matInput [matDatepicker]="stopDatePicker" formControlName="startDate">
+    <input matInput [matDatepicker]="stopDatePicker" formControlName="stopDate">
     <mat-datepicker-toggle matIconSuffix [for]="stopDatePicker"></mat-datepicker-toggle>
     <mat-datepicker #stopDatePicker></mat-datepicker>
   </mat-form-field>
 
   <div class="create-booze-form__actions">
-    <button mat-button color="primary">Сохранить</button>
+    <button mat-button color="primary" (click)="submit()">Сохранить</button>
     <button mat-button>Отмена</button>
   </div>
 </form>

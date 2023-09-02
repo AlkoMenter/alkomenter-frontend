@@ -14,6 +14,6 @@ export class BoozeEntityService extends EntityService<BoozeEntity> {
   getId = (entity: BoozeEntity) => entity.id;
 
   createBooze(boozeData: BoozeDto) {
-
+    console.log(boozeData)
   }
 }

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CreateBoozeFormComponent} from './components/create-booze-form/create-booze-form.component';
+import {CreateBoozeFormComponent} from '@widgets/create-booze-form/components';
 import {ReactiveFormsModule} from "@angular/forms";
 import {UiKitModule} from "@shared/ui-kit/ui-kit.module";
 
