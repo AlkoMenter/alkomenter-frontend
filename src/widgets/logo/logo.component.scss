@@ -1,0 +1,17 @@
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: rgba(#000B26, 0.8);
+
+  &__image {
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+  }
+
+  &__text {
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}

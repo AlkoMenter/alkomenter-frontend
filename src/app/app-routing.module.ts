@@ -9,6 +9,14 @@ const routes: Routes = [
   {
     path: 'boozes/create',
     loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule)
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('@pages/sign-in-page').then(m => m.SignInPageModule)
+  },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('@pages/sign-up-page').then(m => m.SignUpPageModule)
   }
 ];
 
