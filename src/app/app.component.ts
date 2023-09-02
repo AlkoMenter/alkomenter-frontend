@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {PushNotificationsService} from "@shared/push-notifications";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'alkomenter';
+
+  constructor(private pushService: PushNotificationsService) {
+    this.pushService.requestPermission();
+  }
 }
