@@ -1,0 +1,36 @@
+<form [formGroup]="boozeForm" class="create-booze-form">
+  <div class="create-booze-form__title">Создайте пьянку</div>
+
+  <mat-form-field>
+    <mat-label>Дата начала</mat-label>
+    <input matInput [matDatepicker]="startDatePicker" formControlName="startDate">
+    <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Стадия опьянения</mat-label>
+    <mat-select formControlName="idStage">
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Напиток</mat-label>
+    <mat-select formControlName="idDrink">
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Дата завершения</mat-label>
+    <input matInput [matDatepicker]="stopDatePicker" formControlName="startDate">
+    <mat-datepicker-toggle matIconSuffix [for]="stopDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #stopDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="create-booze-form__actions">
+    <button mat-button color="primary">Сохранить</button>
+    <button mat-button>Отмена</button>
+  </div>
+</form>
