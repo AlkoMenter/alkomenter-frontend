@@ -9,6 +9,9 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environment/environment";
 import {AngularFireMessagingModule} from "@angular/fire/compat/messaging";
 import {PushNotificationsModule} from "@shared/push-notifications/push-notifications.module";
+import {ProfileSmallComponent} from "@widgets/profile-small/profile-small.component";
+import {LogoComponent} from "@widgets/logo/logo.component";
+import {ApiModule} from "@shared/api/api.module";
 
 @NgModule({
   declarations: [
@@ -26,6 +29,11 @@ import {PushNotificationsModule} from "@shared/push-notifications/push-notificat
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
+    }),
+    ProfileSmallComponent,
+    LogoComponent,
+    ApiModule.forRoot({
+      rootUrl: '/api'
     })
   ],
   providers: [],
