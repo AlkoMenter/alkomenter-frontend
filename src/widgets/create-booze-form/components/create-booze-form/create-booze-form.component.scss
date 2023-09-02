@@ -1,0 +1,17 @@
+.create-booze-form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  &__actions {
+    gap: 16px;
+    display: flex;
+    flex-direction: row;
+  }
+}

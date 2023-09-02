@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('@pages/main-page').then(m => m.MainPageModule)
   },
   {
+    path: 'boozes/create',
+    loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule)
+  },
+  {
     path: 'sign-in',
     loadChildren: () => import('@pages/sign-in-page').then(m => m.SignInPageModule)
   },
