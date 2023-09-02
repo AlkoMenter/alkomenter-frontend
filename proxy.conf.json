@@ -1,8 +1,11 @@
 {
   "/api": {
-    "target": "http://194.87.236.172:5001/api",
+    "target": "http://194.87.236.172:5001",
     "secure": false,
     "changeOrigin": false,
-    "logLevel": "info"
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/api": ""
+    }
   }
 }

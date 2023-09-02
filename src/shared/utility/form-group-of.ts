@@ -5,9 +5,9 @@ export type FormGroupOf<T> = {
     ? FormArray<
       TArray extends object
         ? FormGroup<FormGroupOf<TArray>>
-        : FormControl<TArray | null | undefined>
+        : FormControl<TArray | null >
     >
     : T[key] extends object
       ? FormGroup<FormGroupOf<T[key]>>
-      : FormControl<T[key] | null | undefined>;
+      : FormControl<T[key] | null >;
 };

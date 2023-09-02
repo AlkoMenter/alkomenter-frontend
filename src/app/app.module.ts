@@ -12,6 +12,8 @@ import {PushNotificationsModule} from "@shared/push-notifications/push-notificat
 import {ProfileSmallComponent} from "@widgets/profile-small/profile-small.component";
 import {LogoComponent} from "@widgets/logo/logo.component";
 import {ApiModule} from "@shared/api/api.module";
+import {HttpClientModule} from "@angular/common/http";
+import {DefaultLocalStorageProvider} from "@shared/utility/local-storage.provider";
 
 @NgModule({
   declarations: [
@@ -32,11 +34,14 @@ import {ApiModule} from "@shared/api/api.module";
     }),
     ProfileSmallComponent,
     LogoComponent,
+    HttpClientModule,
     ApiModule.forRoot({
       rootUrl: '/api'
-    })
+    }),
   ],
-  providers: [],
+  providers: [
+    DefaultLocalStorageProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

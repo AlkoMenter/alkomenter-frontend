@@ -1,2 +1,55 @@
-<form [formGroup]="form">
+<form [formGroup]="form" class="form">
+  <mat-form-field>
+    <mat-label>Логин</mat-label>
+    <input type="text" matInput formControlName="login">
+
+    <mat-error *ngIf="form.get('login')?.hasError('required')">Поле обязательно для заполнения</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Пароль</mat-label>
+    <input type="password" matInput formControlName="password">
+
+    <mat-error *ngIf="form.get('password')?.hasError('required')">Поле обязательно для заполнения</mat-error>
+    <mat-error *ngIf="form.get('password')?.hasError('minlength')">Поле должно содержать хотя бы 4 символа</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Имя</mat-label>
+    <input type="text" matInput formControlName="name">
+
+    <mat-error *ngIf="form.get('name')?.hasError('required')">Поле обязательно для заполнения</mat-error>
+  </mat-form-field>
+
+  <div class="form__row">
+    <mat-form-field>
+      <mat-label>Возраст</mat-label>
+      <input type="number" matInput formControlName="age">
+
+      <mat-error *ngIf="form.get('age')?.hasError('required')">Поле обязательно для заполнения</mat-error>
+      <mat-error *ngIf="form.get('age')?.hasError('min')">Минимальный возраст пользователя 18 лет</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Вес</mat-label>
+      <input type="number" matInput formControlName="weight">
+
+      <mat-error *ngIf="form.get('weight')?.hasError('required')">Поле обязательно для заполнения</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__section">
+    <mat-radio-group formControlName="gender" color="primary">
+      <mat-radio-button [value]="true">Мужчина</mat-radio-button>
+      <mat-radio-button [value]="false">Женщина</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="form__section">
+    <mat-checkbox [formControl]="agreementCheckbox">Я согласен на обработку личных данных</mat-checkbox>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="signUp()" [disabled]="!agreementCheckbox.value">
+    Зарегистрироваться
+  </button>
 </form>
