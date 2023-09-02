@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('@pages/main-page').then(m => m.MainPageModule)
+  },
+  {
+    path: 'boozes/create',
+    loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule)
   }
 ];
 
