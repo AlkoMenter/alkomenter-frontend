@@ -35,9 +35,7 @@ import {DefaultLocalStorageProvider} from "@shared/utility/local-storage.provide
     ProfileSmallComponent,
     LogoComponent,
     HttpClientModule,
-    ApiModule.forRoot({
-      rootUrl: '/api'
-    }),
+    ApiModule.forRoot({rootUrl: ''}),
   ],
   providers: [
     DefaultLocalStorageProvider
