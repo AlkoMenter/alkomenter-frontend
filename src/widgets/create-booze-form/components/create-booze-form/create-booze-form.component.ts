@@ -81,8 +81,8 @@ export class CreateBoozeFormComponent {
   submit() {
     if (this.boozeForm.valid) {
       this.boozeEntityService.createBooze(this.getBoozeData()).subscribe(
-        ({id}) => this.router.navigate(['boozes/progress']),
-        (error) => this.router.navigate(['boozes/progress']), // TODO заменить navigate
+        ({id}) => this.router.navigate([`boozes/progress`]),
+        (error) => this.router.navigate([`boozes/progress`]), // TODO заменить navigate
       )
     }
   }

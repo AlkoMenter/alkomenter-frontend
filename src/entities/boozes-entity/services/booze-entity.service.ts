@@ -18,4 +18,8 @@ export class BoozeEntityService extends EntityService<BoozeEntity, string> {
   createBooze(boozeData: BoozeDto): Observable<any> {
     return this.boozeApi.apiBoozeCreateBoozePost$Json({body: boozeData})
   }
+
+  getBoozeById(boozeId: string) {
+    return this.boozeApi.apiBoozeCalculateBoozeScheduleGet$Json({boozeId})
+  }
 }

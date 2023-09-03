@@ -16,6 +16,7 @@ import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule, NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
+import {MatTabsModule} from "@angular/material/tabs";
 
 export const modules = [
   FormsModule,
@@ -35,6 +36,7 @@ export const modules = [
   NgxMatDatetimePickerModule,
   NgxMatTimepickerModule,
   NgxMatNativeDateModule,
+  MatTabsModule
 ]
 
 @NgModule({
