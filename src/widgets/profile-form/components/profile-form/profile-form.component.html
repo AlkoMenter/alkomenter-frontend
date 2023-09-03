@@ -30,5 +30,8 @@
     </mat-radio-group>
   </div>
 
-  <button mat-raised-button (click)="saveProfile()" color="primary">Сохранить</button>
+  <div class="form__row">
+    <button mat-button [routerLink]="['/']">На главную</button>
+    <button mat-raised-button (click)="saveProfile()" color="primary">Сохранить</button>
+  </div>
 </form>
