@@ -66,8 +66,6 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     this.docStyle.setProperty('--end', `translateY(${this.end}px)`);
     this.boozeEntityService.boozeData$.subscribe(data => {
       this.boozeInfo = data
-      console.log(this.boozeInfo);
-
     })
     setTimeout(() => {
       this.snackBar.open('Время выпить!', 'Конечно', {
