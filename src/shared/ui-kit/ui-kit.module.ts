@@ -16,9 +16,11 @@ import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule, NgxMatTimepickerModule
 } from "@angular-material-components/datetime-picker";
-import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatTableModule} from "@angular/material/table";
 
 export const modules = [
   FormsModule,
@@ -40,6 +42,9 @@ export const modules = [
   NgxMatNativeDateModule,
   MatCardModule,
   MatDividerModule,
+  MatSnackBarModule,
+  MatTabsModule,
+  MatTableModule,
   MatSnackBarModule
 ]
 

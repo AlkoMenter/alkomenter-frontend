@@ -10,13 +10,17 @@
           <div class="separator">:</div>
           <div class="seconds">{{ remainingSeconds }}</div>
         </div>
-        <div class="drink-text"><div>Выпил?</div><div>Жми!</div></div>
+        <div class="drink-text">
+          <div>Выпил?</div>
+          <div>Жми!</div>
+        </div>
       </div>
       <div class="bottle__background">
         <div class="banner">
           <div class="fill" *ngIf="isBottleEmpty">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="300px" height="300px" viewBox="0 0 300 300">
-              <path fill="#04ACFF" id="waveShape" d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z" />
+              <path fill="#04ACFF" id="waveShape"
+                    d="M300,300V2.5c0,0-0.6-0.1-1.1-0.1c0,0-25.5-2.3-40.5-2.4c-15,0-40.6,2.4-40.6,2.4c-12.3,1.1-30.3,1.8-31.9,1.9c-2-0.1-19.7-0.8-32-1.9c0,0-25.8-2.3-40.8-2.4c-15,0-40.8,2.4-40.8,2.4c-12.3,1.1-30.4,1.8-32,1.9c-2-0.1-20-0.8-32.2-1.9c0,0-3.1-0.3-8.1-0.7V300H300z"/>
             </svg>
           </div>
         </div>
@@ -25,29 +29,14 @@
     </div>
   </div>
 </div>
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Инофрмация о состоянии</mat-card-title>
-    <mat-card-subtitle>Start</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <div>
-      <p><b>Выбранные напитки:</b></p>
-      <p *ngFor="let drink of boozeInfo?.selectedDrinks">{{drink.name}} - дозировка: {{drink?.dosage}}, степень: {{drink?.degree}}, алкоголь за грамм: {{drink?.alcoholPerGram}}</p>
-    </div>
-    <mat-divider></mat-divider>
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Инофрмация о употребленных напитках (gulps)</mat-card-title>
-    <mat-card-subtitle>Start</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <div>
-      <p><b>Выбранные напитки:</b></p>
-      <p *ngFor="let drink of boozeInfo?.selectedDrinks">{{drink.name}} - дозировка: {{drink?.dosage}}, степень: {{drink?.degree}}, алкоголь за грамм: {{drink?.alcoholPerGram}}</p>
-    </div>
-    <mat-divider></mat-divider>
-  </mat-card-content>
-</mat-card>
+
+<mat-tab-group>
+  <mat-tab label="Нужно выпить">
+    <!--    <app-gulps-table [gulps]="boozeInfo?.gulps"></app-gulps-table>-->
+    <app-schedule-gulps-table [gulps]="boozeA"></app-schedule-gulps-table>
+  </mat-tab>
+
+  <mat-tab label="Выпито">
+    <app-schedule-gulps-table [gulps]="boozeB"></app-schedule-gulps-table>
+  </mat-tab>
+</mat-tab-group>

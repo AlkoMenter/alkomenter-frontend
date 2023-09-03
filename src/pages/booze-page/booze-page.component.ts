@@ -17,7 +17,42 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   remainingMinutes = '10';
   start = 235;
   end = 5;
-  boozeInfo: any
+  boozeInfo: any;
+
+  boozeA = [
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26 19:00:54'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  19:20:45'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  19:32:12'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  19:47:32'),
+      size: 40
+    }
+  ];
+  boozeB = [
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26 18:37:12'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  18:06:42'),
+      size: 40
+    },
+  ];
 
   get isBottleEmpty () {
     return this.start > this.end;
@@ -31,8 +66,15 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     this.docStyle.setProperty('--end', `translateY(${this.end}px)`);
     this.boozeEntityService.boozeData$.subscribe(data => {
       this.boozeInfo = data
-      this.calcTimer();
+      // this.calcTimer();
     })
+    setTimeout(() => {
+      this.snackBar.open('Время выпить!', 'Конечно', {
+        duration: 0,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      })
+    }, 60000)
   }
 
   public drink(): void {
@@ -46,14 +88,14 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     this.snackBar.open('Ваш прием алкоголя был учтен!', '', { horizontalPosition: 'center', verticalPosition: 'top' })
   }
 
-  calcTimer() {
-    const startTimeUnix = new Date().getTime();
-    const stopTimeUnix = new Date(this.boozeInfo.stopTime).getTime();
-    const seconds = (stopTimeUnix - startTimeUnix) / 1000
-    const minutes = seconds / 60;
-    const hours = Math.round(minutes / 60);
-    this.remainingMinutes = String(hours).length < 1 ? `0${hours}` : String(hours);
-  }
+  // calcTimer() {
+  //   const startTimeUnix = new Date().getTime();
+  //   const stopTimeUnix = new Date(this.boozeInfo.stopTime).getTime();
+  //   const seconds = (stopTimeUnix - startTimeUnix) / 1000
+  //   const minutes = seconds / 60;
+  //   const hours = Math.round(minutes / 60);
+  //   this.remainingMinutes = String(hours).length < 1 ? `0${hours}` : String(hours);
+  // }
 
   changeBottle() {
     this.amountAlcoholDrunk++;
@@ -84,6 +126,4 @@ export class BoozePageComponent implements OnInit, OnDestroy {
       }
     }
   }
-
-  public ngOnDestroy() {}
 }
