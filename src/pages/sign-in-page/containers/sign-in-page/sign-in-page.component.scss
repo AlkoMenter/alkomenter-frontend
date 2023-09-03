@@ -1,0 +1,17 @@
+.sign-in-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  min-width: 220px;
+
+  &__form {
+    width: 75%;
+    margin-bottom: 20px;
+  }
+
+  &__img {
+    width: 75%;
+  }
+}
