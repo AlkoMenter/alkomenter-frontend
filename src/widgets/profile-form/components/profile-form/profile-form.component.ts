@@ -1,7 +1,6 @@
 import {Component, DestroyRef} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {FormGroupOf} from "@shared/utility";
-import {ProfileEntity} from "@entities/profile-entity/model/profile.entity";
 import {ProfileService} from "@entities/profile-entity/services/profile.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {UpdateProfileDto} from "@entities/profile-entity/model/dtos/update-profile.dto";
