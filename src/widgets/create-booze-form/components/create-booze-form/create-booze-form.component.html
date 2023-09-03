@@ -11,29 +11,29 @@
   <mat-form-field>
     <mat-label>Стадия опьянения</mat-label>
     <mat-select formControlName="stageId">
-      <mat-option value="3fa85f64-5717-4562-b3fc-2c963f66afa6">Трезвый</mat-option>
-      <mat-option value="3fa85f64-5717-4562-b3fc-2c963f66afa6">Выпивший</mat-option>
-      <mat-option value="3fa85f64-5717-4562-b3fc-2c963f66afa6">Пьяный</mat-option>
-      <mat-option value="3fa85f64-5717-4562-b3fc-2c963f66afa6">В стельку</mat-option>
+      <ng-container *ngFor="let stage of stages$ | async">
+        <mat-option [value]="stage.id">{{stage.name}}</mat-option>
+      </ng-container>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Напиток</mat-label>
-    <mat-select formControlName="selectedDrinkIds">
+    <mat-select formControlName="selectedDrinkIds" [multiple]="true">
       <mat-select-trigger>
-        {{selectedDrinkIds.value?.[0] || ''}}
+        {{selectedDrinkNames[selectedDrinkIds.value?.[0]]}}
         <span *ngIf="(selectedDrinkIds.value?.length || 0) > 1" class="example-additional-selection">
         (+{{(selectedDrinkIds.value?.length || 0) - 1}} {{selectedDrinkIds.value?.length === 2 ? 'other' : 'others'}})
       </span>
       </mat-select-trigger>
-      <mat-option *ngFor="let drink of drinkList" [value]="drink.id">{{drink.name}}</mat-option>
+      <mat-option *ngFor="let drink of drinkList$ | async" [value]="drink.id">{{drink.name}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Дата завершения</mat-label>
-    <input matInput [matDatepicker]="stopDatePicker" formControlName="stopTime">
+    <input matInput [matDatepicker]="stopDatePicker" formControlName="stopTime"
+           [min]="boozeForm.get('startTime')?.value">
     <mat-datepicker-toggle matIconSuffix [for]="stopDatePicker"></mat-datepicker-toggle>
     <mat-datepicker #stopDatePicker></mat-datepicker>
   </mat-form-field>

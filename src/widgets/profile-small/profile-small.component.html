@@ -1,3 +1,5 @@
 <div class="profile-small">
-  <img class="profile-small__image">
+  <ng-container *ngIf="profile$ | async as profile">
+    <mat-icon class="profile-small__image">account_circle</mat-icon>
+  </ng-container>
 </div>

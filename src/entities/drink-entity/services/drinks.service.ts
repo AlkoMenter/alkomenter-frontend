@@ -24,4 +24,15 @@ export class DrinksService extends EntityService<DrinkEntity, string> {
       )
       .subscribe();
   }
+
+  getDrinks() {
+    this.setEntities([
+      {
+        id: '1392887a-224f-4e0a-a2ab-a499066ebd5c',
+        name: 'Вино',
+        alcoholPerGram: 200,
+        degree: 200
+      }
+    ])
+  }
 }
