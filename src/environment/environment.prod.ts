@@ -7,5 +7,5 @@ export const environment = {
     messagingSenderId: "943072235592",
     appId: "1:943072235592:web:ecaf8601b72cb16afec87d"
   },
-  vapidKey: 'BKEURJ97A7tzBvSGFqcn50RTuWYPwgz4tjkL5ut440qEUpDL9Aw6MfkMqydOisRigiEzmfJkoQtG8I3F6lBXPa0'
+  apiRoot: 'http://194.87.236.172:5001'
 }

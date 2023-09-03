@@ -8,12 +8,12 @@ import { BoozeApi } from '@shared/api/services/booze-api';
 @Injectable({
   providedIn: 'root'
 })
-export class BoozeEntityService extends EntityService<BoozeEntity> {
+export class BoozeEntityService extends EntityService<BoozeEntity, string> {
   constructor(private readonly boozeApi: BoozeApi) {
     super()
   }
 
-  getId = (entity: BoozeEntity) => entity.id;
+  getId = (entity: BoozeEntity) => entity.profileId;
 
   createBooze(boozeData: BoozeDto): Observable<any> {
     return this.boozeApi.apiBoozeCreateBoozePost$Json({ body: boozeData })

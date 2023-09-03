@@ -10,18 +10,10 @@ export class PushNotificationsService {
   }
 
   requestPermission() {
-    this.angularFireMessaging.requestPermission
+    return this.angularFireMessaging.requestPermission
       .pipe(
         mergeMapTo(this.angularFireMessaging.tokenChanges),
         take(1)
-      )
-      .subscribe(
-        (token) => {
-          console.log('Permissions granted', token);
-        },
-        error => {
-          console.error(error)
-        }
       )
   }
 }
