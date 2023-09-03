@@ -9,7 +9,7 @@ import {take} from "rxjs";
   providedIn: 'root'
 })
 export class DrinksService extends EntityService<DrinkEntity, string> {
-  getId = (drink: DrinkEntity) => drink.id
+  getId = (drink: DrinkEntity) => drink?.id;
 
   constructor(
     private drinks: DrinkApi
@@ -26,13 +26,13 @@ export class DrinksService extends EntityService<DrinkEntity, string> {
   }
 
   getDrinks() {
-    this.setEntities([
-      {
-        id: '1392887a-224f-4e0a-a2ab-a499066ebd5c',
-        name: 'Вино',
-        alcoholPerGram: 200,
-        degree: 200
-      }
-    ])
+    this.drinks.apiDrinkGetAllDrinksGet$Json()
+      .pipe(
+        take(1)
+      )
+      .subscribe((drinks) => {
+        this.setEntities(drinks as DrinkEntity[]);
+      })
+
   }
 }

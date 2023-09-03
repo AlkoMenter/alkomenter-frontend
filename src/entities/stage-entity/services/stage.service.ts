@@ -35,13 +35,12 @@ export class StageService extends EntityService<StageEntity, string> {
   }
 
   getStages() {
-    this.setEntities([
-      {
-        id: 'c28145f7-f5aa-40a1-bab0-c61ee2d8518d',
-        name: 'Выпивший',
-        minProMille: 5,
-        maxProMille: 10
-      }
-    ])
+    this.stageApi.apiStageGetAllStagesGet$Json()
+      .pipe(
+        take(1)
+      )
+      .subscribe((stages) => {
+        this.setEntities(stages as StageEntity[])
+      });
   }
 }
