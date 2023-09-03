@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import {BoozeDto, BoozeEntityService} from "@entities/boozes-entity";
 import {FormGroupOf} from "@shared/utility";
 import { Router } from '@angular/router';
@@ -11,12 +11,20 @@ import { Router } from '@angular/router';
 })
 export class CreateBoozeFormComponent {
   public boozeForm = this.fb.group<FormGroupOf<BoozeDto>>({
-    id: this.fb.control(null),
-    startDate: this.fb.control(undefined, [Validators.required]),
-    idStage: this.fb.control(null),
-    idDrink: this.fb.control(null),
-    stopDate: this.fb.control(null)
+    profileId: this.fb.control(null),
+    startTime: this.fb.control(undefined, [Validators.required]),
+    stopTime: this.fb.control(null),
+    stageId: this.fb.control('3fa85f64-5717-4562-b3fc-2c963f66afa6'),
+    currentProMille: this.fb.control(0),
+    selectedDrinkIds: this.fb.control(['3fa85f64-5717-4562-b3fc-2c963f66afa6'])
   });
+  get selectedDrinkIds(): FormControl<any> {
+    return this.boozeForm.get('selectedDrinkIds') as FormControl<any>;
+  }
+  drinkList = [
+    { id: '3fa85f64-5717-4562-b3fc-2c963f66afa6', name: 'Пиво' },
+    { id: '3fa85f64-5717-4562-b3fc-2c963f66afa6', name: 'Вино' }
+  ]
 
   constructor(
     protected fb: FormBuilder,
@@ -28,7 +36,8 @@ export class CreateBoozeFormComponent {
   submit() {
     if (this.boozeForm.valid) {
       this.boozeEntityService.createBooze(this.getBoozeData()).subscribe(
-        ({ id }) => this.router.navigate(['boozes/progress'])
+        ({ id }) => this.router.navigate(['boozes/progress']),
+        (error) => this.router.navigate(['boozes/progress']), // TODO заменить navigate
       )
     }
   }
