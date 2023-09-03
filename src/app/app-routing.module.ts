@@ -9,14 +9,19 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'boozes/create',
-    loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule),
-    canActivate: [authGuard]
-  },
-  {
-    path: 'boozes/progress',
-    loadChildren: () => import('@pages/booze-page').then(m => m.BoozePageModule),
-    canActivate: [authGuard]
+    path: 'boozes',
+    children: [
+      {
+        path: 'create',
+        loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule),
+        canActivate: [authGuard]
+      },
+      {
+        path: 'progress',
+        loadChildren: () => import('@pages/booze-page').then(m => m.BoozePageModule),
+        canActivate: [authGuard]
+      },
+    ]
   },
   {
     path: 'sign-in',
@@ -25,6 +30,11 @@ const routes: Routes = [
   {
     path: 'sign-up',
     loadChildren: () => import('@pages/sign-up-page').then(m => m.SignUpPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('@pages/profile-page').then(m => m.ProfilePageModule),
+    canActivate: [authGuard]
   }
 ];
 
