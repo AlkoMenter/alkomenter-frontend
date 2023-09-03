@@ -25,3 +25,29 @@
     </div>
   </div>
 </div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Инофрмация о состоянии</mat-card-title>
+    <mat-card-subtitle>Start</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <p><b>Выбранные напитки:</b></p>
+      <p *ngFor="let drink of boozeInfo?.selectedDrinks">{{drink.name}} - дозировка: {{drink?.dosage}}, степень: {{drink?.degree}}, алкоголь за грамм: {{drink?.alcoholPerGram}}</p>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Инофрмация о употребленных напитках (gulps)</mat-card-title>
+    <mat-card-subtitle>Start</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <p><b>Выбранные напитки:</b></p>
+      <p *ngFor="let drink of boozeInfo?.selectedDrinks">{{drink.name}} - дозировка: {{drink?.dosage}}, степень: {{drink?.degree}}, алкоголь за грамм: {{drink?.alcoholPerGram}}</p>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+</mat-card>
