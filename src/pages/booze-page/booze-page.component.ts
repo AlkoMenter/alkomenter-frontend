@@ -80,9 +80,9 @@ export class BoozePageComponent implements OnInit {
   public drink(): void {
     this.boozeEntityService.drink({
       boozeId: this.boozeInfo.id as string,
-      drinkId: this.boozeInfo.schedule.scheduledDrinks[0].drink.id
+      drinkId: this.boozeInfo.schedule?.scheduledDrinks[0]?.drink.id
     }).subscribe((val) => {
-      this.boozeInfo = val;
+      // this.boozeInfo = val;
       this.changeBottle();
     })
     this.snackBar.open('Ваш прием алкоголя был учтен!', '', { horizontalPosition: 'center', verticalPosition: 'top' })
