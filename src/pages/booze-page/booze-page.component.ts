@@ -1,10 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {interval} from 'rxjs';
-import {BoozeEntityService} from '@entities/boozes-entity';
-import {DrinksService} from '@entities/drink-entity/services/drinks.service';
-import {apiBoozeDto} from "@shared/api/models/api-booze-dto";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
+import { BoozeEntityService } from '@entities/boozes-entity';
+import { DrinksService } from '@entities/drink-entity/services/drinks.service';
 import {MatSnackBar} from "@angular/material/snack-bar";
-
 
 @Component({
   selector: 'app-booze-page',
@@ -18,7 +16,7 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   remainingMinutes = '10';
   start = 235;
   end = 5;
-  boozeInfo: apiBoozeDto | null = null;
+  boozeInfo: any;
 
   boozeA = [
     {
@@ -55,7 +53,7 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     },
   ];
 
-  get isBottleEmpty() {
+  get isBottleEmpty () {
     return this.start > this.end;
   }
 
@@ -63,14 +61,13 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    interval(1000).subscribe(() => {
-      this.changeTimer();
-    })
+    interval(1000).subscribe(() => { this.changeTimer() })
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);
     this.docStyle.setProperty('--end', `translateY(${this.end}px)`);
     this.boozeEntityService.boozeData$.subscribe(data => {
       this.boozeInfo = data
       console.log(this.boozeInfo);
+
     })
     setTimeout(() => {
       this.snackBar.open('Время выпить!', 'Конечно', {
@@ -81,14 +78,15 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     }, 60000)
   }
 
-  public ngOnDestroy() {
-  }
+  // currentBottleStep
+
+  public ngOnDestroy() {}
 
   onChangeTimer(time: string) {
     if (time.length) {
       return {
-        remainingMinutes: time[1] ? time[0] + time[1] : `0${time[0]}`,
-        remainingSeconds: time[3] ? time[2] + time[3] : time[2] ? `0${time[2]}` : this.remainingSeconds
+        remainingMinutes: time[1] ? time[0] + time[1]: `0${time[0]}`,
+        remainingSeconds: time[3] ? time[2] + time[3]: time[2] ? `0${time[2]}` : this.remainingSeconds
       }
     }
 
@@ -96,6 +94,16 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   }
 
   public drink(): void {
+    this.boozeEntityService.drink({
+      boozeId: this.boozeInfo.id as string,
+      drinkId: this.boozeInfo.schedule.scheduledDrinks[0].drink.id
+    }).subscribe((val) => {
+      this.boozeInfo = val;
+      this.changeBottle();
+    })
+  }
+
+  changeBottle() {
     this.amountAlcoholDrunk++;
     this.end = this.end + 23;
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);
