@@ -20,6 +20,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatTableModule} from "@angular/material/table";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 export const modules = [
   FormsModule,
@@ -43,6 +44,7 @@ export const modules = [
   MatDividerModule,
   MatTabsModule,
   MatTableModule,
+  MatSnackBarModule
 ]
 
 @NgModule({
