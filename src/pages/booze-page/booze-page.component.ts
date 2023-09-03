@@ -3,6 +3,7 @@ import {interval} from 'rxjs';
 import {BoozeEntityService} from '@entities/boozes-entity';
 import {DrinksService} from '@entities/drink-entity/services/drinks.service';
 import {apiBoozeDto} from "@shared/api/models/api-booze-dto";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -19,11 +20,46 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   end = 5;
   boozeInfo: apiBoozeDto | null = null;
 
+  boozeA = [
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26 19:00:54'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  19:20:45'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  19:32:12'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  19:47:32'),
+      size: 40
+    }
+  ];
+  boozeB = [
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26 18:37:12'),
+      size: 40
+    },
+    {
+      drink: 'Джин',
+      gulpTime: new Date('2023-01-26  18:06:42'),
+      size: 40
+    },
+  ];
+
   get isBottleEmpty() {
     return this.start > this.end;
   }
 
-  constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService) {
+  constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService, private snackBar: MatSnackBar) {
   }
 
   public ngOnInit(): void {
@@ -36,6 +72,13 @@ export class BoozePageComponent implements OnInit, OnDestroy {
       this.boozeInfo = data
       console.log(this.boozeInfo);
     })
+    setTimeout(() => {
+      this.snackBar.open('Время выпить!', 'Конечно', {
+        duration: 0,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      })
+    }, 60000)
   }
 
   public ngOnDestroy() {
