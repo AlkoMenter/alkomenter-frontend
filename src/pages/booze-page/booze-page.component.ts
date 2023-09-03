@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './booze-page.component.html',
   styleUrls: ['./booze-page.component.scss']
 })
-export class BoozePageComponent implements OnInit, OnDestroy {
+export class BoozePageComponent implements OnInit {
   docStyle = document.documentElement.style;
   amountAlcoholDrunk = 0;
   remainingSeconds = '00';

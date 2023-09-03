@@ -42,7 +42,6 @@ export const modules = [
   NgxMatNativeDateModule,
   MatCardModule,
   MatDividerModule,
-  MatSnackBarModule,
   MatTabsModule,
   MatTableModule,
   MatSnackBarModule
