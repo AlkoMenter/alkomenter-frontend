@@ -1,1 +1,29 @@
+.create-booze-page {
+  display: flex;
+  justify-content: space-between;
+  &__form {
+    min-width: 220px;
+    width: 50%;
+  }
+  &__img {
+    min-width: 220px;
+    max-width: 50%;
+  }
+}
 
+@media screen and (max-width: 500px) {
+
+  .create-booze-page {
+    justify-content: center;
+    &__form {
+      width: 100%;
+      background-color: #e8eaf680;
+      border-radius: 10px;
+    }
+    &__img {
+      position: absolute;
+      top: 5px;
+      z-index: -1000;
+    }
+  }
+}

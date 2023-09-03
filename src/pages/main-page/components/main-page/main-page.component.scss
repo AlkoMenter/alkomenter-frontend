@@ -13,7 +13,9 @@
     font-family: 'Roboto', Times, serif;
     font-size: 2em;
     margin-top: 20px;
+    user-select: none;
     &:hover {
+      cursor: pointer;
       background-color: #c5cae9;
     }
   }
@@ -41,6 +43,7 @@
     text-align:center;
   }
   p {
+    user-select: none;
     font-size:180px;
     margin-top:20px;
     color:#2982FF;
