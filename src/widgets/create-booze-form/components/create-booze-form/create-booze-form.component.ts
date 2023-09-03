@@ -60,6 +60,7 @@ export class CreateBoozeFormComponent {
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe(() => {
+        console.log(this.boozeForm);
         this.boozeForm.patchValue({stopTime: this.boozeForm.value.startTime})
       })
 

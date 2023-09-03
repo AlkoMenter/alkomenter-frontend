@@ -9,6 +9,9 @@
       [for]="$any(startDatePicker)"
     ></mat-datepicker-toggle>
     <ngx-mat-datetime-picker #startDatePicker></ngx-mat-datetime-picker>
+    <mat-error *ngIf="boozeForm.get('startTime')?.hasError('matDatetimePickerMin')">Вы выбрали дату раньше текущего
+      момента
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -39,6 +42,9 @@
            [min]="boozeForm.get('startTime')?.value">
     <ngx-mat-datepicker-toggle matSuffix [for]="stopDatePicker"></ngx-mat-datepicker-toggle>
     <ngx-mat-datetime-picker #stopDatePicker></ngx-mat-datetime-picker>
+    <mat-error *ngIf="boozeForm.get('stopTime')?.hasError('matDatetimePickerMin')">Вы выбрали дату раньше времени
+      старта
+    </mat-error>
   </mat-form-field>
 
   <div class="create-booze-form__actions">
