@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
-import { BoozeEntityService } from '@entities/boozes-entity';
-import { DrinksService } from '@entities/drink-entity/services/drinks.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {interval} from 'rxjs';
+import {BoozeEntityService} from '@entities/boozes-entity';
+import {DrinksService} from '@entities/drink-entity/services/drinks.service';
+import {apiBoozeDto} from "@shared/api/models/api-booze-dto";
 
 
 @Component({
@@ -16,13 +17,14 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   remainingMinutes = '10';
   start = 235;
   end = 5;
-  boozeInfo: any
+  boozeInfo: apiBoozeDto | null = null;
 
-  get isBottleEmpty () {
+  get isBottleEmpty() {
     return this.start > this.end;
   }
 
-  constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService) {}
+  constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService) {
+  }
 
   public ngOnInit(): void {
     interval(1000).subscribe(() => {
@@ -33,17 +35,17 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     this.boozeEntityService.boozeData$.subscribe(data => {
       this.boozeInfo = data
       console.log(this.boozeInfo);
-
     })
   }
 
-  public ngOnDestroy() {}
+  public ngOnDestroy() {
+  }
 
   onChangeTimer(time: string) {
     if (time.length) {
       return {
-        remainingMinutes: time[1] ? time[0] + time[1]: `0${time[0]}`,
-        remainingSeconds: time[3] ? time[2] + time[3]: time[2] ? `0${time[2]}` : this.remainingSeconds
+        remainingMinutes: time[1] ? time[0] + time[1] : `0${time[0]}`,
+        remainingSeconds: time[3] ? time[2] + time[3] : time[2] ? `0${time[2]}` : this.remainingSeconds
       }
     }
 
