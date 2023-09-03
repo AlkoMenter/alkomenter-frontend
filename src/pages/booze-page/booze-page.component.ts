@@ -25,15 +25,12 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService) {}
 
   public ngOnInit(): void {
-    interval(1000).subscribe(() => {
-      this.changeTimer();
-    })
+    interval(1000).subscribe(() => { this.changeTimer() })
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);
     this.docStyle.setProperty('--end', `translateY(${this.end}px)`);
     this.boozeEntityService.boozeData$.subscribe(data => {
       this.boozeInfo = data
       console.log(this.boozeInfo);
-
     })
   }
 
@@ -57,8 +54,12 @@ export class BoozePageComponent implements OnInit, OnDestroy {
       boozeId: this.boozeInfo.id as string,
       drinkId: this.boozeInfo.schedule.scheduledDrinks[0].drink.id
     }).subscribe((val) => {
-      console.log(val)
+      this.boozeInfo = val;
+      this.changeBottle();
     })
+  }
+
+  changeBottle() {
     this.amountAlcoholDrunk++;
     this.end = this.end + 23;
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);

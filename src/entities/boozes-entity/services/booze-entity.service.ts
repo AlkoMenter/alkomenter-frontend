@@ -36,10 +36,13 @@ export class BoozeEntityService extends EntityService<BoozeEntity, string> {
   }
 
   drink(drinkData: DrinkDto) {
-    return this.boozeApi.apiBoozeDrinkPost$Plain({body: drinkData})
-      .pipe(tap((data) => {
-        this.localStorage.setItem(this.boozeKey, JSON.stringify(data));
-        this.boozeData$.next(data);
-      }))
+    return this.boozeApi.apiBoozeDrinkPost$Json({body: drinkData})
+      .pipe(
+        tap((data) => {
+          this.localStorage.removeItem(this.boozeKey);
+          this.localStorage.setItem(this.boozeKey, JSON.stringify(data));
+          this.boozeData$.next(data);
+        })
+      )
   }
 }
