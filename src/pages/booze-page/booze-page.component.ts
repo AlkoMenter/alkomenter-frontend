@@ -37,6 +37,8 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     })
   }
 
+  // currentBottleStep
+
   public ngOnDestroy() {}
 
   onChangeTimer(time: string) {
@@ -51,6 +53,12 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   }
 
   public drink(): void {
+    this.boozeEntityService.drink({
+      boozeId: this.boozeInfo.id as string,
+      drinkId: this.boozeInfo.schedule.scheduledDrinks[0].drink.id
+    }).subscribe((val) => {
+      console.log(val)
+    })
     this.amountAlcoholDrunk++;
     this.end = this.end + 23;
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);

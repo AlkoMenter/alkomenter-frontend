@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
 import {EntityService} from "@shared/utility";
 import {BoozeEntity} from "../model/booze.entity";
-import { BoozeDto } from "@entities/boozes-entity";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BoozeDto, DrinkDto } from "@entities/boozes-entity";
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import {BoozeApi} from '@shared/api/services/booze-api';
 import { tap } from 'rxjs/operators';
 import { LocalStorage } from '@shared/utility/local-storage.provider';
@@ -27,6 +27,16 @@ export class BoozeEntityService extends EntityService<BoozeEntity, string> {
 
   createBooze(boozeData: BoozeDto): Observable<apiBoozeDto> {
     return this.boozeApi.apiBoozeCreateBoozePost$Json({body: boozeData})
+      .pipe(
+        switchMap(({ id }) => this.boozeApi.apiBoozeGetBoozeGet$Json({ boozeId: id })),
+        tap((data) => {
+          this.localStorage.setItem(this.boozeKey, JSON.stringify(data));
+          this.boozeData$.next(data);}
+        ))
+  }
+
+  drink(drinkData: DrinkDto) {
+    return this.boozeApi.apiBoozeDrinkPost$Plain({body: drinkData})
       .pipe(tap((data) => {
         this.localStorage.setItem(this.boozeKey, JSON.stringify(data));
         this.boozeData$.next(data);

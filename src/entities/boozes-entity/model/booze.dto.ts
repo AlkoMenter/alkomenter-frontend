@@ -6,3 +6,8 @@ export interface BoozeDto {
   currentProMille: number;
   selectedDrinkIds: string[] | null;
 }
+
+export interface DrinkDto {
+  boozeId: string;
+  drinkId: string;
+}
