@@ -1,7 +1,7 @@
 export interface BoozeDto {
-  profileId: number | undefined;
-  startTime?: Date;
-  stopTime?: number;
+  profileId: string;
+  startTime?: string;
+  stopTime?: string;
   stageId: string;
   currentProMille: number;
   selectedDrinkIds: string[] | null;
