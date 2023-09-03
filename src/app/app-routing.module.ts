@@ -1,18 +1,22 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {authGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('@pages/main-page').then(m => m.MainPageModule)
+    loadChildren: () => import('@pages/main-page').then(m => m.MainPageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'boozes/create',
-    loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule)
+    loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'boozes/progress',
-    loadChildren: () => import('@pages/booze-page').then(m => m.BoozePageModule)
+    loadChildren: () => import('@pages/booze-page').then(m => m.BoozePageModule),
+    canActivate: [authGuard]
   },
   {
     path: 'sign-in',

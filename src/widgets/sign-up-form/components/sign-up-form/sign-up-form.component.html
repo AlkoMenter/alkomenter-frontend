@@ -49,7 +49,16 @@
     <mat-checkbox [formControl]="agreementCheckbox">Я согласен на обработку личных данных</mat-checkbox>
   </div>
 
-  <button mat-raised-button color="primary" (click)="signUp()" [disabled]="!agreementCheckbox.value">
-    Зарегистрироваться
-  </button>
+  <div class="form__section">
+    <button mat-raised-button color="primary" (click)="signUp()" [disabled]="!agreementCheckbox.value"
+            class="form__action_full-width">
+      Зарегистрироваться
+    </button>
+  </div>
+
+  <div class="form__section">
+    <button mat-button class="form__action_full-width" [routerLink]="['/sign-in']">
+      Войти
+    </button>
+  </div>
 </form>

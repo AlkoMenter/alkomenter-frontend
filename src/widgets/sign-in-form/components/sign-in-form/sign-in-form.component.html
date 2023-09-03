@@ -13,5 +13,10 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button (click)="signIn()" color="primary">Войти</button>
+  <div class="form__section">
+    <button mat-raised-button (click)="signIn()" color="primary" class="form__action_full-width">Войти</button>
+  </div>
+  <div class="form__section">
+    <button mat-button [routerLink]="['/sign-up']" class="form__action_full-width">Зарегистрироваться</button>
+  </div>
 </form>

@@ -23,6 +23,7 @@ export class CreateBoozeFormComponent {
     currentProMille: this.fb.control(0),
     selectedDrinkIds: this.fb.control(['3fa85f64-5717-4562-b3fc-2c963f66afa6'])
   });
+  now = new Date();
 
   get selectedDrinkIds(): FormControl<any> {
     return this.boozeForm.get('selectedDrinkIds') as FormControl<any>;
@@ -53,7 +54,16 @@ export class CreateBoozeFormComponent {
     private drinksService: DrinksService,
     private stagesService: StageService
   ) {
-    console.log(this.authService.account$.value);
+    this.boozeForm.get('startTime')
+      ?.valueChanges
+      .pipe(
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(() => {
+        this.boozeForm.patchValue({stopTime: this.boozeForm.value.startTime})
+      })
+
+
     this.authService.account$.pipe(
       filter(x => x !== null),
       takeUntilDestroyed(this.destroyRef)
@@ -74,6 +84,10 @@ export class CreateBoozeFormComponent {
         (error) => this.router.navigate(['boozes/progress']), // TODO заменить navigate
       )
     }
+  }
+
+  cancel() {
+    this.router.navigate(['/'])
   }
 
   getBoozeData(): BoozeDto {

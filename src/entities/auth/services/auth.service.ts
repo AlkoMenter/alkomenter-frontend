@@ -22,12 +22,14 @@ export class AuthService {
     private router: Router,
     @Inject(LocalStorage) private localStorage: Storage
   ) {
-    const account = this.localStorage.getItem('account');
+    const account = this.localStorage.getItem(this.accountKey);
 
     if (account) {
       this.account$.next(JSON.parse(account));
     }
   }
+
+  private accountKey = 'account';
 
   signIn(signInDto: SignInDto) {
     this.auth.apiAuthLoginPost$Json({body: signInDto as apiLoginRequest})
@@ -36,7 +38,7 @@ export class AuthService {
       )
       .subscribe((accountDto) => {
         this.account$.next(accountDto as AccountEntity);
-        this.localStorage.setItem('account', JSON.stringify(accountDto));
+        this.localStorage.setItem(this.accountKey, JSON.stringify(accountDto));
         this.router.navigate(['/']);
       })
   }
@@ -47,5 +49,11 @@ export class AuthService {
       .subscribe(() => {
         this.signIn({login: signUpDto.login, password: signUpDto.password} as SignInDto);
       })
+  }
+
+  logout() {
+    this.account$.next(null)
+    this.localStorage.removeItem(this.accountKey)
+    this.router.navigate(['/sign-in'])
   }
 }

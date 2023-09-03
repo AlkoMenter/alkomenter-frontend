@@ -22,7 +22,6 @@ export class SignInFormComponent {
   }
 
   signIn() {
-    console.log(this.formGroup.valid, this.formGroup.value)
     if (this.formGroup.valid) {
       this.auth.signIn(this.formGroup.value as SignInDto)
     }
