@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { BoozeEntityService } from '@entities/boozes-entity';
 import { DrinksService } from '@entities/drink-entity/services/drinks.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -22,31 +23,16 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     return this.start > this.end;
   }
 
-  constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService) {}
+  constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService, private readonly snackBar: MatSnackBar) {}
 
   public ngOnInit(): void {
-    interval(1000).subscribe(() => { this.changeTimer() })
+    interval(60000).subscribe(() => { this.changeTimer() })
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);
     this.docStyle.setProperty('--end', `translateY(${this.end}px)`);
     this.boozeEntityService.boozeData$.subscribe(data => {
       this.boozeInfo = data
-      console.log(this.boozeInfo);
+      this.calcTimer();
     })
-  }
-
-  // currentBottleStep
-
-  public ngOnDestroy() {}
-
-  onChangeTimer(time: string) {
-    if (time.length) {
-      return {
-        remainingMinutes: time[1] ? time[0] + time[1]: `0${time[0]}`,
-        remainingSeconds: time[3] ? time[2] + time[3]: time[2] ? `0${time[2]}` : this.remainingSeconds
-      }
-    }
-
-    return null;
   }
 
   public drink(): void {
@@ -57,6 +43,16 @@ export class BoozePageComponent implements OnInit, OnDestroy {
       this.boozeInfo = val;
       this.changeBottle();
     })
+    this.snackBar.open('Ваш прием алкоголя был учтен!', '', { horizontalPosition: 'center', verticalPosition: 'top' })
+  }
+
+  calcTimer() {
+    const startTimeUnix = new Date().getTime();
+    const stopTimeUnix = new Date(this.boozeInfo.stopTime).getTime();
+    const seconds = (stopTimeUnix - startTimeUnix) / 1000
+    const minutes = seconds / 60;
+    const hours = Math.round(minutes / 60);
+    this.remainingMinutes = String(hours).length < 1 ? `0${hours}` : String(hours);
   }
 
   changeBottle() {
@@ -88,4 +84,6 @@ export class BoozePageComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  public ngOnDestroy() {}
 }
