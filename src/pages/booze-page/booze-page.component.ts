@@ -3,15 +3,12 @@ import { interval } from 'rxjs';
 
 
 @Component({
-  selector: 'app-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  selector: 'app-booze-page',
+  templateUrl: './booze-page.component.html',
+  styleUrls: ['./booze-page.component.scss']
 })
-export class HomePageComponent implements OnInit, OnDestroy {
+export class BoozePageComponent implements OnInit, OnDestroy {
   docStyle = document.documentElement.style;
-  isLoading = false;
-  isDrinkingEventCreated = false;
-  dateTime = new Date();
   amountAlcoholDrunk = 0;
   remainingSeconds = '00';
   remainingMinutes = '10';
@@ -24,7 +21,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     interval(1000).subscribe(() => {
-      if (!this.isDrinkingEventCreated) { this.dateTime = new Date(); }
       this.changeTimer();
     })
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);
@@ -42,10 +38,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
     }
 
     return null;
-  }
-
-  public createDrinking(): void {
-    this.isDrinkingEventCreated = !this.isDrinkingEventCreated;
   }
 
   public drink(): void {

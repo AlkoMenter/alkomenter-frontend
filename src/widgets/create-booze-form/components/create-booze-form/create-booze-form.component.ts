@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {BoozeDto, BoozeEntityService} from "@entities/boozes-entity";
 import {FormGroupOf} from "@shared/utility";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-booze-form',
@@ -19,13 +20,16 @@ export class CreateBoozeFormComponent {
 
   constructor(
     protected fb: FormBuilder,
-    private boozeEntityService: BoozeEntityService
+    private boozeEntityService: BoozeEntityService,
+    private readonly router: Router
   ) {
   }
 
   submit() {
     if (this.boozeForm.valid) {
-      this.boozeEntityService.createBooze(this.getBoozeData())
+      this.boozeEntityService.createBooze(this.getBoozeData()).subscribe(
+        ({ id }) => this.router.navigate(['boozes/progress'])
+      )
     }
   }
 

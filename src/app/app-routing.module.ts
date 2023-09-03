@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('@pages/create-booze-page').then(m => m.CreateBoozePageModule)
   },
   {
+    path: 'boozes/progress',
+    loadChildren: () => import('@pages/booze-page').then(m => m.BoozePageModule)
+  },
+  {
     path: 'sign-in',
     loadChildren: () => import('@pages/sign-in-page').then(m => m.SignInPageModule)
   },

@@ -1,0 +1,74 @@
+.main-page {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .create-drink-button {
+    color: #1a237e;
+    background-color: #e8eaf6;
+    border: 2px solid #c5cae9;
+    border-radius: 10px;
+    padding: 20px 10px;
+    font-family: 'Roboto', Times, serif;
+    font-size: 2em;
+    margin-top: 20px;
+    &:hover {
+      background-color: #c5cae9;
+    }
+  }
+}
+
+.clock {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  figure {
+    width:210px;
+    height:210px;
+    transform-style: preserve-3d;
+    transform: rotateX(-35deg) rotateY(45deg);
+    transition:2s;
+    &:hover {
+      transform:rotateX(-50deg) rotateY(45deg);
+    }
+  }
+  .face {
+    width:100%;
+    height:100%;
+    position:absolute;
+    transform-origin: center;
+    background: #e8eaf6;
+    text-align:center;
+  }
+  p {
+    font-size:180px;
+    margin-top:20px;
+    color:#2982FF;
+    animation: time-color 20s infinite;
+    line-height:180px;
+  }
+  .front {
+    transform: translate3d(0, 0, 105px);
+    background: #c5cae9;
+  }
+  .left {
+    transform: rotateY(-90deg) translate3d(0, 0, 105px);
+    background: #e8eaf6;
+  }
+  .top {
+    transform: rotateX(90deg) translate3d(0, 0, 105px);
+    background: #9fa8da;
+  }
+
+  @keyframes time-color {
+    0% {
+      color: #4db6ac;
+    }
+    50% {
+      color: #00897b;
+    }
+    100% {
+      color: #4db6ac;
+    }
+  }
+}

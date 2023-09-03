@@ -1,1 +1,10 @@
-<p>main-page works!</p>
+<div class="main-page">
+  <div class="clock">
+    <figure>
+      <div class="face top"><p id="s">{{clockTime | date: "ss"}}</p></div>
+      <div class="face front"><p id="m">{{clockTime | date: "mm"}}</p></div>
+      <div class="face left"><p id="h">{{clockTime | date: "hh"}}</p></div>
+    </figure>
+  </div>
+  <div class="create-drink-button" (click)="createDrinking()">Создать мероприятие</div>
+</div>
