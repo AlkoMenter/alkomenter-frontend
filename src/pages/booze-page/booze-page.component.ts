@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
+import { BoozeEntityService } from '@entities/boozes-entity';
+import { DrinksService } from '@entities/drink-entity/services/drinks.service';
 
 
 @Component({
@@ -14,10 +16,13 @@ export class BoozePageComponent implements OnInit, OnDestroy {
   remainingMinutes = '10';
   start = 235;
   end = 5;
+  boozeInfo: any
 
   get isBottleEmpty () {
     return this.start > this.end;
   }
+
+  constructor(private readonly boozeEntityService: BoozeEntityService, private readonly drinksService: DrinksService) {}
 
   public ngOnInit(): void {
     interval(1000).subscribe(() => {
@@ -25,6 +30,11 @@ export class BoozePageComponent implements OnInit, OnDestroy {
     })
     this.docStyle.setProperty('--start', `translateY(${this.start}px)`);
     this.docStyle.setProperty('--end', `translateY(${this.end}px)`);
+    this.boozeEntityService.boozeData$.subscribe(data => {
+      this.boozeInfo = data
+      console.log(this.boozeInfo);
+
+    })
   }
 
   public ngOnDestroy() {}
