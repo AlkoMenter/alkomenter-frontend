@@ -2,39 +2,75 @@
   width: 100%;
   height: max-content;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.drink-text {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 120px;
-  font-size: 2em;
-  max-width: 200px;
-  div {
-    margin-top: 10px;
+  .img-container {
+    display: flex;
+    justify-content: flex-end;
+    &__smurf{
+      width: 100%;
+      max-height: 400px;
+    }
   }
-  user-select: none;
 }
 
 .bottle {
+  width: 100%;
   position: relative;
   user-select: none;
-  width: 200px;
+  min-width: 200px;
   height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container-info {
+    user-select: none;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    div {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .timer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+
+      .separator {
+        margin: 0 0.2rem;
+      }
+    }
+
+    .drink-text {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      div {
+        padding: 5px;
+      }
+    }
+  }
+
   &__background {
     position: absolute;
     z-index: 2;
   }
+
   img {
     width: 200px;
     height: 400px;
   }
+
   .banner {
     position: absolute;
     z-index: 1;
@@ -94,22 +130,5 @@
     100% {
       transform: translate(0, 0);
     }
-  }
-}
-
-.timer {
-  position: absolute;
-  top: 50%;
-  left: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  div {
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  .separator {
-    margin: 0 0.2rem;
   }
 }
