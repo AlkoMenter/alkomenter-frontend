@@ -35,7 +35,7 @@ export class BoozeEntityService extends EntityService<BoozeEntity, string> {
         ))
   }
 
-  drink(drinkData: DrinkDto) {
+  drink(drinkData: DrinkDto): Observable<apiBoozeDto> {
     return this.boozeApi.apiBoozeDrinkPost$Json({body: drinkData})
       .pipe(
         tap((data) => {
